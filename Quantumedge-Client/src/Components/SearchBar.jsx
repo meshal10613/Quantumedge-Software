@@ -16,7 +16,7 @@ export default function SearchBar() {
     <div className="bg-secondary py-10 relative">
         <div className="flex items-center gap-3 p-4 max-w-7xl mx-auto">
             {/* Search Input */}
-            <form onClick={handleSearch} className="flex items-center w-full max-w-lg bg-[#1a1a1a] rounded-lg border border-green-500 px-3 py-1">
+            <form onClick={handleSearch} className="flex items-center w-full max-w-lg bg-[#1a1a1a] rounded-lg border border-green-500 px-3 py-1 z-10">
                 <input
                     type="text"
                     value={search}
@@ -44,11 +44,11 @@ export default function SearchBar() {
             </form>
 
             {/* Advanced Search Button */}
-            <button className="btn bg-green-600 text-white rounded-full border-none px-5 hover:bg-green-700">
+            <button className="btn bg-green-600 text-white rounded-full border-none px-5 hover:bg-green-700 cursor-pointer z-10">
                 Advanced search
             </button>
         </div>
-        <img src={star} alt="" className="absolute bottom-0 left-3/5" />
+        <img src={star} alt="" className="absolute bottom-0 left-3/5 z-0" />
     </div>
     );
 }
