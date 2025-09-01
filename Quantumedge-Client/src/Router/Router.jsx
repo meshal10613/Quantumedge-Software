@@ -3,6 +3,8 @@ import HomeLayout from "../Layouts/HomeLayout";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import Jobs from "../Pages/Jobs";
+import Loading from "../Components/Loading";
 
 export const router = createBrowserRouter([
     {
@@ -11,6 +13,8 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
+                hydrateFallbackElement: <Loading/> ,
+                loader: () => fetch("http://localhost:3000/jobs"),
                 element: <Home/>
             },
             {

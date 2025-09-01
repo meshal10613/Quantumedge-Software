@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import { FaApple, FaFacebookF, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import design from '../assets/navbar-design.png'
 import { RxCross2 } from 'react-icons/rx';
 import useAuthContext from '../Hooks/useAuthContext';
 import Swal from 'sweetalert2';
 
 const Register = () => {
-    const { registerUser, loading } = useAuthContext();
+    const { registerUser, loading, updateUser, setUser } = useAuthContext();
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
+    const navigate = useNavigate();
 
     const handleRegister = (e) => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const { email, password, confirmPassword } = Object.fromEntries(formData.entries());
+        const { name, email, password, confirmPassword } = Object.fromEntries(formData.entries());
         setError("");
         if(password !== confirmPassword){
             return setError("Password & Confirm Password didn't match!");
@@ -27,32 +28,51 @@ const Register = () => {
         registerUser(email, password)
         .then((res) => {
             const user = res.user;
-            console.log(user)
+            const updatedData = {
+                displayName: name
+            };
             const serverData = {
+                name,
                 email,
                 creationTime: user?.metadata?.creationTime,
                 lastSignInTime: user?.metadata?.lastSignInTime,
             };
-            fetch("http://localhost:3000/auth/register", {
-                method: "POST",
-                headers: {
-                    "content-type" : "application/json"
-                },
-                body: JSON.stringify(serverData)
+            updateUser(updatedData)
+            .then(() => {
+                setUser({...user, ...updatedData});
+                fetch("http://localhost:3000/auth/register", {
+                    method: "POST",
+                    headers: {
+                        "content-type" : "application/json"
+                    },
+                    body: JSON.stringify(serverData)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.insertedId){
+                        navigate("/");
+                        Swal.fire({
+                            title: "Congratulations!",
+                            text: "Register user successfully",
+                            icon: "success"
+                        });
+                    }
+                })
             })
-            .then(res => res.json())
-            .then(data => {
-                if(data.insertedId){
-                    Swal.fire({
-                        title: "Congratulations!",
-                        text: "Register user successfully",
-                        icon: "success"
-                    });
-                }
+            .catch((error) => {
+                Swal.fire({
+                    title: "Congratulations!",
+                    text: `${error.message}`,
+                    icon: "success"
+                });
             })
         })
         .catch((error) => {
-            console.log(error)
+            Swal.fire({
+                title: "Congratulations!",
+                text: `${error.message}`,
+                icon: "success"
+            });
         })
     };
 
@@ -69,6 +89,16 @@ const Register = () => {
                     </Link>
                 </p>
                 <form onSubmit={handleRegister} className='space-y-4'>
+                    {/* Name */}
+                    <div className="form-control">
+                        <input
+                        type="text"
+                        name="name"
+                        placeholder="Name"
+                        className="input input-bordered w-full bg-transparent text-white border border-primary rounded-3xl"
+                        required
+                        />
+                    </div>
                     {/* Email */}
                     <div className="form-control">
                         <input

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaApple, FaFacebookF, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import design from '../assets/navbar-design.png'
 import { RxCross2 } from 'react-icons/rx';
 import useAuthContext from '../Hooks/useAuthContext';
@@ -11,6 +11,7 @@ const Login = () => {
     const { loading, setUser, loginUser } = useAuthContext();
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -39,6 +40,7 @@ const Login = () => {
             .then(res => res.json())
             .then(data => {
                 if(data.modifiedCount || data.insertedId){
+                    navigate("/");
                     Swal.fire({
                         title: "Congratulations!",
                         text: `${data.modifiedCount ? "Login user successfully" : "Register user successfully"}`,
@@ -48,7 +50,11 @@ const Login = () => {
             })
         })
         .catch((error) => {
-            console.log(error)
+            Swal.fire({
+                title: "Congratulations!",
+                text: `${error.message}`,
+                icon: "success"
+            });
         })
     };
 
