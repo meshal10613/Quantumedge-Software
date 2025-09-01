@@ -3,6 +3,7 @@ import { FaApple, FaFacebookF, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { Link } from 'react-router';
 import design from '../assets/navbar-design.png'
+import { RxCross2 } from 'react-icons/rx';
 
 const Register = () => {
     const [error, setError] = useState("");
@@ -18,12 +19,12 @@ const Register = () => {
         if(password !== confirmPassword){
             return setError("Password & Confirm Password didn't match!");
         };
-        
+        console.log(email, password, confirmPassword)
     };
 
     return (
     <div className="flex items-center justify-center my-20">
-        <div className="bg-black/95 text-white w-[900px] rounded-2xl shadow-lg flex overflow-hidden relative">
+        <div className="bg-black/95 text-white w-[900px] rounded-2xl shadow-lg flex overflow-hidden relative p-5">
             {/* Left Side - Form */}
             <div className="w-1/2 p-10 flex flex-col justify-center z-10">
                 <h2 className="text-2xl font-bold mb-2">Open your account</h2>
@@ -126,12 +127,15 @@ const Register = () => {
             </div>
 
             {/* Right Side - Image */}
-            <div className="w-1/2 z-10">
-            <img
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-                alt="Team working"
-                className="w-full h-full object-cover"
-            />
+            <div className="w-1/2 z-10 relative">
+                <img
+                    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+                    alt="Team working"
+                    className="w-full h-full object-cover rounded-2xl"
+                />
+                <div className='absolute top-0 right-0 bg-black text-primary z-20 rounded-full p-1 m-2 cursor-pointer'>
+                    <RxCross2 size={20} />
+                </div>
             </div>
 
             <img src={design} alt="" className='absolute top-2/7 left-2/7 z-0' />

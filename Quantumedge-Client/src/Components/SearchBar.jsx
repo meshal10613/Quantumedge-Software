@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import star from '../assets/star.png'
+import { BiSearch } from "react-icons/bi";
 
 export default function SearchBar() {
     const [search, setSearch] = useState("");
@@ -16,7 +17,7 @@ export default function SearchBar() {
     <div className="bg-secondary py-10 relative">
         <div className="flex items-center gap-3 p-4 max-w-7xl mx-auto">
             {/* Search Input */}
-            <form onClick={handleSearch} className="flex items-center w-full max-w-lg bg-[#1a1a1a] rounded-lg border border-green-500 px-3 py-1 z-10">
+            <form onClick={handleSearch} className="flex items-center w-full max-w-lg bg-[#1a1a1a] rounded-lg border px-3 py-1 z-10 border-primary">
                 <input
                     type="text"
                     value={search}

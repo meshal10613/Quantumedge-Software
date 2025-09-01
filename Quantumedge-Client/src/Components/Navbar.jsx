@@ -11,8 +11,15 @@ const Navbar = () => {
                     <img src="/logo.png" alt="logo" className='w-52' />
                 </Link>
             </div>
-            <div className="flex gap-2 z-20">
-                <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto hidden lg:block" />
+            <div className="flex gap-4 z-20">
+                <div className="bg-[#1a2416] px-4 py-2 lg:flex justify-baseline items-center rounded-md w-72 hidden">
+                    <select className="select select-sm bg-[#2a3226] text-white rounded-md w-fit">
+                        <option>Freelancer</option>
+                        <option>Developer</option>
+                        <option>Designer</option>
+                        <option>Manager</option>
+                    </select>
+                </div>
                 <div className='flex items-center justify-center gap-5'>
                     <Link className='text-primary hidden lg:block'>BECOME A SELLER</Link>
                     <Link to='/login' className='text-white hidden lg:block'>LOGIN</Link>

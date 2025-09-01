@@ -3,6 +3,7 @@ import { FaApple, FaFacebookF, FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { Link } from 'react-router';
 import design from '../assets/navbar-design.png'
+import { RxCross2 } from 'react-icons/rx';
 
 const Login = () => {
     const [error, setError] = useState("");
@@ -14,12 +15,12 @@ const Login = () => {
         const formData = new FormData(form);
         const { email, password } = Object.fromEntries(formData.entries());
         setError("");
-        
+        console.log(email, password)
     };
 
     return (
     <div className="flex items-center justify-center my-20">
-        <div className="bg-black/95 text-white w-[900px] rounded-2xl shadow-lg flex overflow-hidden relative z-10">
+        <div className="bg-black/95 text-white w-[900px] rounded-2xl shadow-lg flex overflow-hidden relative z-10 p-5">
             {/* Left Side - Form */}
             <div className="w-1/2 p-10 flex flex-col justify-center z-10">
                 <h2 className="text-2xl font-bold mb-2">Login your account</h2>
@@ -102,12 +103,15 @@ const Login = () => {
             </div>
 
             {/* Right Side - Image */}
-            <div className="w-1/2 z-10">
+            <div className="w-1/2 z-10 relative">
                 <img
                     src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
                     alt="Team working"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-2xl"
                 />
+                <div className='absolute top-0 right-0 bg-black text-primary z-20 rounded-full p-1 m-2 cursor-pointer'>
+                    <RxCross2 size={20} />
+                </div>
             </div>
             
             <img src={design} alt="" className='absolute top-1/3 left-2/7 z-0' />
