@@ -15,8 +15,8 @@ const Navbar = () => {
                 <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto hidden lg:block" />
                 <div className='flex items-center justify-center gap-5'>
                     <Link className='text-primary hidden lg:block'>BECOME A SELLER</Link>
-                    <Link className='text-white hidden lg:block'>LOGIN</Link>
-                    <Link className='bg-primary hover:bg-green-700 py-2 px-4 text-white rounded-3xl p-1 border-none'>REGISTRATION</Link>
+                    <Link to='/login' className='text-white hidden lg:block'>LOGIN</Link>
+                    <Link to='/register' className='bg-primary hover:bg-green-700 py-2 px-4 text-white rounded-3xl p-1 border-none'>REGISTRATION</Link>
                 </div>
             </div>
         </div>

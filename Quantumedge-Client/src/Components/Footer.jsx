@@ -8,7 +8,7 @@ import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
     return (
-        <div className='bg-secondary text-accent py-20 mt-20'>
+        <div className='bg-secondary text-accent py-20'>
             <div className='max-w-7xl mx-auto space-y-20 relative'>
                 {/* 1st section */}
                 <div className='flex flex-col md:flex-row justify-between gap-y-10 pl-5 md:pl-0'>
