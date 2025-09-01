@@ -4,8 +4,11 @@ import { FaXTwitter } from 'react-icons/fa6';
 import { Link } from 'react-router';
 import design from '../assets/navbar-design.png'
 import { RxCross2 } from 'react-icons/rx';
+import useAuthContext from '../Hooks/useAuthContext';
+import Swal from 'sweetalert2';
 
 const Register = () => {
+    const { registerUser, loading } = useAuthContext();
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
@@ -19,7 +22,38 @@ const Register = () => {
         if(password !== confirmPassword){
             return setError("Password & Confirm Password didn't match!");
         };
-        console.log(email, password, confirmPassword)
+        
+        // register with firebase
+        registerUser(email, password)
+        .then((res) => {
+            const user = res.user;
+            console.log(user)
+            const serverData = {
+                email,
+                creationTime: user?.metadata?.creationTime,
+                lastSignInTime: user?.metadata?.lastSignInTime,
+            };
+            fetch("http://localhost:3000/auth/register", {
+                method: "POST",
+                headers: {
+                    "content-type" : "application/json"
+                },
+                body: JSON.stringify(serverData)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.insertedId){
+                    Swal.fire({
+                        title: "Congratulations!",
+                        text: "Register user successfully",
+                        icon: "success"
+                    });
+                }
+            })
+        })
+        .catch((error) => {
+            console.log(error)
+        })
     };
 
     return (
@@ -88,7 +122,12 @@ const Register = () => {
                         <p className='text-red-500 text-xs ml-2'>{error}</p>
                     </div>
                     <button type='submit' className="btn bg-primary text-white w-full rounded-full border-none text-center">
-                        Create Account
+                        { 
+                            loading ? 
+                            <div className='w-5 h-5 mx-auto rounded-full border-2 border-t-primary animate-spin'>
+                            </div> : 
+                            "Create Account" 
+                        }
                     </button>
                 </form>
 

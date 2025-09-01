@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyA9ktcfFOLUKfnmjyPonySU5PxV6igGFG4",
-    authDomain: "quantumedge-77a74.firebaseapp.com",
-    projectId: "quantumedge-77a74",
-    storageBucket: "quantumedge-77a74.firebasestorage.app",
-    messagingSenderId: "39654861398",
-    appId: "1:39654861398:web:f1498d31d43aa0d93ce9f7"
+    apiKey: import.meta.env.VITE_apiKey,
+    authDomain: import.meta.env.VITE_authDomain,
+    projectId: import.meta.env.VITE_projectId,
+    storageBucket: import.meta.env.VITE_storageBucket,
+    messagingSenderId: import.meta.env.VITE_messagingSenderId,
+    appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase

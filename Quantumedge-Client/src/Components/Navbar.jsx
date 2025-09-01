@@ -1,8 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router';
 import design from '../assets/navbar-design.png'
+import useAuthContext from '../Hooks/useAuthContext';
 
 const Navbar = () => {
+    const { user, logoutUser } = useAuthContext();
+    console.log(user)
+
+    const handleLogout = () => {
+        logoutUser()
+        .then(() => {
+            console.log("Sign out successfully!")
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    };
+
     return (
     <div className='bg-secondary'>
         <div className="navbar justify-between max-w-7xl mx-auto py-5 border-b-2 border-[#cccccc10]">
@@ -22,8 +36,14 @@ const Navbar = () => {
                 </div>
                 <div className='flex items-center justify-center gap-5'>
                     <Link className='text-primary hidden lg:block'>BECOME A SELLER</Link>
-                    <Link to='/login' className='text-white hidden lg:block'>LOGIN</Link>
-                    <Link to='/register' className='bg-primary hover:bg-green-700 py-2 px-4 text-white rounded-3xl p-1 border-none'>REGISTRATION</Link>
+                    {
+                        user ? 
+                        <Link onClick={handleLogout} className='bg-primary hover:bg-green-700 py-2 px-4 text-white rounded-3xl p-1 border-none'>LOGOUT</Link> :
+                        <div className='flex items-center gap-5'>
+                            <Link to='/login' className='text-white hidden lg:block'>LOGIN</Link>
+                            <Link to='/register' className='bg-primary hover:bg-green-700 py-2 px-4 text-white rounded-3xl p-1 border-none'>REGISTRATION</Link>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
