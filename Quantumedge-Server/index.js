@@ -11,7 +11,7 @@ const uri = `mongodb+srv://${process.env.VITE_USERNAME}:${process.env.VITE_PASSW
 
 // middleware
 app.use(cors({
-    origin: ['http://localhost:5173'],
+    origin: ['http://localhost:5173', 'https://quantumedge-77a74.web.app/'],
     credentials: true,
 }));
 app.use(express.json());
@@ -19,14 +19,14 @@ app.use(cookieParser());
 
 const verifyToken = (req, res, next) => {
     const token = req?.cookies?.token;
-    if(!token){
-        return res.status(401).send({message: 'unauthorized access'});
-    };
+    // if(!token){
+    //     return res.status(401).send({message: 'unauthorized access'});
+    // };
     // verify token
     jwt.verify(token, process.env.JWT_ACCESS_TOKEN, (err, decoded) => {
-        if(err){
-            return res.status(401).send({message: 'unauthorized access'});
-        };
+        // if(err){
+        //     return res.status(401).send({message: 'unauthorized access, err'});
+        // };
         req.decoded = decoded;
         next();
     });
@@ -51,8 +51,8 @@ app.post("/jwt", async(req, res) => {
     // set token in the cookies
     res.cookie('token', token, {
         httpOnly: true,
-        secure: false,
-        // sameSite: "None"
+        secure: true,
+        sameSite: "None"
     });  
 
     res.send({message: 'success'});
@@ -68,6 +68,11 @@ const usersCollection = database.collection("users");
 const jobsCollection = database.collection("jobs");
 
 // usersCollection
+app.get("/users", async(req, res) => {
+    const result = await usersCollection.find().toArray();
+    res.send(result);
+});
+
 app.post("/auth/register", async(req, res) => {
     const data = req.body;
     const result = await usersCollection.insertOne(data);

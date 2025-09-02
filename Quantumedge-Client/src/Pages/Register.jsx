@@ -40,7 +40,7 @@ const Register = () => {
             updateUser(updatedData)
             .then(() => {
                 setUser({...user, ...updatedData});
-                fetch("http://localhost:3000/auth/register", {
+                fetch("https://quantumedge-server.vercel.app/auth/register", {
                     method: "POST",
                     headers: {
                         "content-type" : "application/json"

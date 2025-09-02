@@ -5,7 +5,6 @@ import { Navigate } from 'react-router';
 
 const PrivetRoute = ({children}) => {
     const { user, loading } = useAuthContext();
-    console.log(user)
 
     if(loading){
         return <Loading/>;

@@ -30,7 +30,7 @@ const Login = () => {
                 creationTime: user?.metadata?.creationTime,
                 lastSignInTime: user?.metadata?.lastSignInTime,
             };
-            fetch("http://localhost:3000/auth/login", {
+            fetch("https://quantumedge-server.vercel.app/auth/login", {
                 method: "POST",
                 headers: {
                     "content-type" : "application/json"

@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 hydrateFallbackElement: <Loading/> ,
-                loader: () => fetch("http://localhost:3000/jobs", {credentials: 'include'}),
+                loader: () => fetch("https://quantumedge-server.vercel.app/jobs", {credentials: 'include'}),
                 element: <PrivetRoute><Home/></PrivetRoute>
             },
             {
