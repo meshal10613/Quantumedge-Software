@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
 import design from '../assets/navbar-design.png'
+import category from '../assets/category.png'
 import useAuthContext from '../Hooks/useAuthContext';
 
 const Navbar = () => {
     const { user, logoutUser } = useAuthContext();
-    console.log(user)
 
     const handleLogout = () => {
         logoutUser()
@@ -20,10 +20,11 @@ const Navbar = () => {
     return (
     <div className='bg-secondary'>
         <div className="navbar justify-between max-w-7xl mx-auto py-5 border-b-2 border-[#cccccc10]">
-            <div className="z-20">
+            <div className="z-20 flex items-center gap-3">
                 <Link to="/" className="text-xl cursor-pointer w-52">
                     <img src="/logo.png" alt="logo" className='w-52' />
                 </Link>
+                <img src={category} alt="" className='w-28' />
             </div>
             <div className="flex gap-4 z-20">
                 <div className="bg-[#1a2416] px-4 py-2 lg:flex justify-baseline items-center rounded-md w-72 hidden">

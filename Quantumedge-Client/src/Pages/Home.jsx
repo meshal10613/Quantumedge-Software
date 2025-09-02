@@ -4,10 +4,10 @@ import Jobs from './Jobs';
 
 const Home = () => {
     return (
-        <div>
+        <>
             <SearchBar/>
             <Jobs/>
-        </div>
+        </>
     );
 };
 

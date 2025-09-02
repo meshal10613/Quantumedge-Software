@@ -3,8 +3,8 @@ import HomeLayout from "../Layouts/HomeLayout";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
-import Jobs from "../Pages/Jobs";
 import Loading from "../Components/Loading";
+import PrivetRoute from "./PrivetRoute";
 
 export const router = createBrowserRouter([
     {
@@ -14,8 +14,8 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 hydrateFallbackElement: <Loading/> ,
-                loader: () => fetch("http://localhost:3000/jobs"),
-                element: <Home/>
+                loader: () => fetch("http://localhost:3000/jobs", {credentials: 'include'}),
+                element: <PrivetRoute><Home/></PrivetRoute>
             },
             {
                 path: "/login",
