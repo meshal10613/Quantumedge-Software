@@ -17,7 +17,8 @@ export default function SearchBar() {
     <div className="bg-secondary py-10 relative">
         <div className="flex items-center gap-3 p-4 max-w-7xl mx-auto">
             {/* Search Input */}
-            <form onClick={handleSearch} className="flex items-center w-full max-w-lg bg-[#1a1a1a] rounded-lg border px-3 py-1 z-10 border-primary">
+            <div className="relative w-[500px] rounded-lg p-[1px] bg-gradient-to-r from-orange-400 via-primary to-[#1a1a1a]">
+            <form onClick={handleSearch} className="flex items-center w-full max-w-lg bg-[#1a1a1a] rounded-lg px-3 py-1 z-10">
                 <input
                     type="text"
                     value={search}
@@ -43,6 +44,7 @@ export default function SearchBar() {
                     <FiSearch />
                 </button>
             </form>
+            </div>
 
             {/* Advanced Search Button */}
             <button className="btn bg-green-600 text-white rounded-full border-none px-5 hover:bg-green-700 cursor-pointer z-10">
