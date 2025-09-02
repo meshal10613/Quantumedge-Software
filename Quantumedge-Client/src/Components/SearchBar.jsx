@@ -25,7 +25,7 @@ export default function SearchBar() {
                     placeholder="Search your needs"
                     className="input input-ghost text-accent flex-grow rounded-full focus:outline-none bg-transparent focus:bg-transparent focus:text-accent"
                 />
-
+                
                 {/* Dropdown */}
                 <select
                 value={category}

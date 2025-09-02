@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const registerUser = (email, password) => {
         setLoading(true);

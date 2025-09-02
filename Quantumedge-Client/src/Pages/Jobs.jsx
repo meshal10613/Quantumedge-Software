@@ -1,4 +1,7 @@
 import React from 'react';
+import { IoIosPeople } from 'react-icons/io';
+import { IoLocationOutline } from 'react-icons/io5';
+import { PiBagSimpleDuotone } from 'react-icons/pi';
 import { useLoaderData } from 'react-router';
 
 const Jobs = () => {
@@ -17,9 +20,9 @@ const Jobs = () => {
                             </div>
                             <p className='text-[#888888] text-sm'>{d?.description}</p>
                             <div className='flex items-center gap-3'>
-                                <div className='bg-[#FAF7FF] text-[#9747FF] rounded-3xl text-sm px-3 py-2'>{d?.type}</div>
-                                <div className='bg-[#FFF5F5] text-[#DB3131] rounded-3xl text-sm px-3 py-2'>{d?.level} level</div>
-                                <div className='bg-[#E9FFEE] text-[#05AF2B] rounded-3xl text-sm px-3 py-2'>{d?.vacancy} Freelancer</div>
+                                <div className='bg-[#FAF7FF] text-[#9747FF] rounded-3xl text-sm px-3 py-2 flex items-center gap-1'><IoLocationOutline />{d?.type}</div>
+                                <div className='bg-[#FFF5F5] text-[#DB3131] rounded-3xl text-sm px-3 py-2 flex items-center gap-1'><PiBagSimpleDuotone />{d?.level} level</div>
+                                <div className='bg-[#E9FFEE] text-[#05AF2B] rounded-3xl text-sm px-3 py-2 flex items-center gap-1'><IoIosPeople />{d?.vacancy} Freelancer</div>
                             </div>
                             <div className='space-y-1 pb-4 border-b-2 border-[#cccccc50]'>
                                 <div className='flex items-center justify-baseline gap-3'>
