@@ -28,3 +28,5 @@ export const router = createBrowserRouter([
         ]
     },
 ]);
+
+// https://quantumedge-server.vercel.app

@@ -11,7 +11,7 @@ const uri = `mongodb+srv://${process.env.VITE_USERNAME}:${process.env.VITE_PASSW
 
 // middleware
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://quantumedge-77a74.web.app/'],
+    origin: ['http://localhost:5173', 'https://quantumedge-77a74.web.app'],
     credentials: true,
 }));
 app.use(express.json());
@@ -19,14 +19,14 @@ app.use(cookieParser());
 
 const verifyToken = (req, res, next) => {
     const token = req?.cookies?.token;
-    // if(!token){
-    //     return res.status(401).send({message: 'unauthorized access'});
-    // };
+    if(!token){
+        return res.status(401).send({message: 'unauthorized access'});
+    };
     // verify token
     jwt.verify(token, process.env.JWT_ACCESS_TOKEN, (err, decoded) => {
-        // if(err){
-        //     return res.status(401).send({message: 'unauthorized access, err'});
-        // };
+        if(err){
+            return res.status(401).send({message: 'unauthorized access, err'});
+        };
         req.decoded = decoded;
         next();
     });
