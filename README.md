@@ -63,3 +63,5 @@ CORS_ORIGINS=http://localhost:5173, https://quantumedge-77a74.web.app
 ```bash
 nodemon index.js / node index.js
 ```
+
+4. Prisma is already configured in this project, but the controllers currently rely on the existing model/service structure. If you prefer to use Prisma directly, update the database operations in ` usersController.js ` and ` jobsController.js `accordingly.

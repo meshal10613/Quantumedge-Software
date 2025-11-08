@@ -1,0 +1,35 @@
+//? If use prisma then------------------>
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("MONGODB_URI")
+}
+
+model User {
+    id             String  @id @default(auto()) @map("_id") @db.ObjectId
+    email          String  @unique
+    name           String?
+    creationTime   String?
+    lastSignInTime String?
+
+    @@map("users") // maps to MongoDB collection
+}
+
+model Job {
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    userName    String
+    userEmail   String
+    title       String
+    description String
+    salary      String
+    vacancy     Int
+    deadline    String
+    type        String
+    level       String
+    skills      String[] // array of strings
+
+    @@map("jobs") // maps to MongoDB collection
+}
