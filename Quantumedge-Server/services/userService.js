@@ -10,7 +10,7 @@ async function registerUser(data) {
         where: { email: data.email },
     });
     if (exist) {
-        throw new Error("Email already registerd!");
+        throw new Error("Email already registerd! Please login...");
     }
     return prisma.user.create({
         data,
@@ -27,9 +27,7 @@ async function loginUser(data) {
             data: { lastSignInTime: data.lastSignInTime },
         });
     }
-    return prisma.user.create({
-        data: { email, lastSignInTime },
-    });
+    return new Error("Email didn't registerd yet! Please register...");
 }
 
 module.export = { getUser, registerUser, loginUser };
