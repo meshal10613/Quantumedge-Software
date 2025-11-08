@@ -7,7 +7,7 @@ function init (collection) {
 };
 
 function findAll () {
-	return jobsCollection.findAll().toArray();
+	return jobsCollection.find().toArray();
 };
 
 function insertJob (job) {

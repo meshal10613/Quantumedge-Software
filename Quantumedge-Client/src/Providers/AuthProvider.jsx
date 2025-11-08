@@ -33,11 +33,11 @@ const AuthProvider = ({children}) => {
             setLoading(false);
             if(currentUser?.email){
                 const userData = { email: currentUser?.email };
-                axios.post("https://quantumedge-server.vercel.app/jwt", userData, {
+                axios.post("https://quantumedge-server.vercel.app/auth/jwt", userData, {
                     withCredentials: true
                 })
                 .then((res) => {
-                    console.log(res.data)
+                    console.log(res)
                 })
                 .catch((err) => console.log(err.data))
             }
