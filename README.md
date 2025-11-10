@@ -51,8 +51,6 @@ npm install
 VITE_USERNAME=quantumedge
 VITE_PASSWORD=IvrzkpsCsAkgIlAb
 
-MONGODB_URI=mongodb+srv://quantumedge:IvrzkpsCsAkgIlAb@meshal10613.mbbtx0s.mongodb.net/?retryWrites=true&w=majority&appName=meshal10613
-
 JWT_ACCESS_TOKEN=fdb6a37d486b5126ed8f5e42b98263570e21863d544d0263304b04be535a22cf36975b6f15e86da872c87316c2450e5ffca39fa59d4af81ff4222b2c3efc4c01
 
 PORT=3000
